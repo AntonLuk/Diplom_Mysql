@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
                 <div class="container" style="text-align: center;">
-                    <img style="width: 400px;text-align: center;" class="img-responsive" src="{{Storage::url('5-100.png')}}">
+                    <img style="width: 400px;text-align: center;" class="img-responsive" src="/5-100.png">
                 </div>
             <br>
             <div class="card">

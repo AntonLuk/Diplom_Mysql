@@ -43,7 +43,7 @@
         <li class="nav-item text-nowrap">
 
                 @if(Auth::user()->image_path=='default_avatar.jpg')
-                    <img src="{{Storage::url(Auth::user()->image_path)}}" alt="" class="" style="width: 30px;height: 30px;background-color: white;border-radius: 10px; /* Радиус скругления */
+                    <img src="/default_avatar.jpg" alt="" class="" style="width: 30px;height: 30px;background-color: white;border-radius: 10px; /* Радиус скругления */
     box-shadow: 0 0 0 2px green, 0 0 13px #333;">
                 @else
                     <img src="{{Storage::url('/users/'.Auth::user()->id.'/'.Auth::user()->image_path)}}" alt="" class="" style="width: 30px;height: 30px;background-color: white;border-radius: 10px; /* Радиус скругления */
