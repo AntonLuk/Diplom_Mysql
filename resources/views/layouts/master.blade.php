@@ -54,7 +54,7 @@
     </ul>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-        <a class="font-weight-bold btn btn-success">{{Auth::user()->name}}</a>
+        <a href="{{route('users.show',['id'=>Auth::user()->id])}}>" class="font-weight-bold btn btn-success">{{Auth::user()->name}}</a>
         </li>
     </ul>
     <ul class="navbar-nav px-3">

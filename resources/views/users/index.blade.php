@@ -18,7 +18,7 @@
             <tr>
                 <td><div data-allowfullscreen="true" data-width="200" data-maxwidth="300" id="fotorama{{$user->id}}">
                         @if($user->image_path=='default_avatar.jpg')
-                            <img src="{{Storage::url($user->image_path)}}">
+                            <img src="/default_avatar.jpg">
                         @else
                             <img src="{{Storage::url('users/'.$user->id."/".$user->image_path)}}">
                         @endif

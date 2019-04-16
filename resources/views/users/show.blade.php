@@ -15,8 +15,7 @@
         </div>
         <div class="form-group">
             <label for="department">Отдел</label>
-            <select class="form-control" name="department">
-                <option value=""></option>
+            <select class="form-control" @if(Entrust::hasRole('administrator')) @else disabled @endif name="department">
                 @foreach($departments as $department)
                     <option value={{$department->id}}
                     @foreach($user->departments as $dep)
@@ -30,7 +29,7 @@
         </div>
         <div class="form-group">
             <label for="role">Роль</label>
-            <select class="form-control" name="role">
+            <select class="form-control" @if(Entrust::hasRole('administrator')) @else disabled @endif name="role">
                 @foreach($roles as $role)
                     <option value={{$role->id}}
                     @foreach($user->roles as $rol)

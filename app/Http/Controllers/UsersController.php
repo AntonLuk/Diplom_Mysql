@@ -82,11 +82,11 @@ class UsersController extends Controller
             $user->image_path=$filename;
         }
         $user->save();
-        $user1=$this->getAllUserInfo($request->id);
+
         //$depuser='';
         //$depuser=DepartmentUser::where('user_id', '=', $request->id)->first();;
 
-            foreach ($user1->departments as $dep) {
+            foreach ($user->departments as $dep) {
                 if ($dep->id != $request->department) {
                     //$depuser=DepartmentUser::where('user_id', '=', $request->id)->first();
                     DepartmentUser::where('user_id', $request->id)
@@ -96,7 +96,7 @@ class UsersController extends Controller
             }
 
 
-        foreach ($user1->roles as $role) {
+        foreach ($user->roles as $role) {
 
             if ($role != $request->role) {
                 RoleUser::where('user_id', $request->id)
