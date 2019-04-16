@@ -73,6 +73,11 @@ class ObjsController extends Controller
         return view('objs.index',compact('objs','searchForm'));
         //return dd(count($objs));
     }
+    public function searchAdd($address){
+        $objs=Obj::where('address', 'LIKE', "%$address%")->paginate(10);
+        $searchForm=$this->SearchForm();
+        return view('objs.index',compact('objs','searchForm'));
+    }
     public function create(Request $request){
         $obj=new Obj();
         $obj->geo_lat=$request->geo_lat;

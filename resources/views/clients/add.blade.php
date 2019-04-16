@@ -5,7 +5,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
             <label for="name">ФИО</label>
-            <input class="form-control" name="name" value="">
+            <input type="text" required class="form-control" name="name" value="">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
@@ -15,7 +15,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="primary_number">Приоритетный номер</label>
-                    <input class="form-control" name="primary_number" value="">
+                    <input type="number" required class="form-control" name="primary_number" value="">
                 </div>
             </div>
             <div class="col">

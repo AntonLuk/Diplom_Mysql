@@ -64,7 +64,7 @@
         </style>
     </head>
     <body>
-    @include('layouts.menu')
+    @include('layouts.menu2')
 
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))

@@ -11,7 +11,7 @@
     <form method="post" class="" enctype="multipart/form-data" action="{{route('objs.create')}}">
         <div class="form-group">
             <label for="address">Введите адрес</label>
-            <input id="address" name="address" class="form-control" type="text" size="100"/>
+            <input id="address" required name="address" class="form-control" type="text" size="100"/>
         </div>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" id="geo_lat" name="geo_lat" value="">
@@ -23,7 +23,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="city">Город</label>
-                        <input type="text" name="city" class="form-control" readonly id="md-city">
+                        <input type="text"  name="city" class="form-control" readonly  id="md-city">
                     </div>
         {{--<div class="form-group">--}}
             {{--<label for="district">Район</label>--}}
@@ -31,15 +31,15 @@
         {{--</div>--}}
                      <div class="form-group">
                         <label for="street">Улица</label>
-                        <input type="text" name="street" class="form-control" readonly id="md-street">
+                        <input type="text"  name="street" class="form-control" readonly  id="md-street">
                      </div>
                      <div class="form-group">
                          <label for="house">Дом</label>
-                         <input type="text" name="house" class="form-control" readonly id="md-house">
+                         <input type="text" required name="house" class="form-control" readonly id="md-house">
                      </div>
                      <div class="form-group">
                          <label for="flat">Квартира</label>
-                         <input type="text" name="flat" class="form-control" readonly id="md-flat">
+                         <input type="text" required name="flat" class="form-control" readonly id="md-flat">
                      </div>
                 </div>
                 <div class="col-md-8">
@@ -53,7 +53,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="files">Фотографии</label>
-                        <input type="file" id="files" name="image_path[]" class="form-control" multiple/>
+                        <input type="file" required id="files" name="image_path[]" class="form-control" multiple/>
                     </div>
                     <div class="row">
                         <div class="col">
@@ -70,7 +70,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Год постройки</label>
-                                <input type="number" min="1" class="form-control" name="year_construct">
+                                <input type="number" min="1" required class="form-control" name="year_construct">
                             </div>
                         </div>
 
@@ -79,7 +79,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="type_obj_id">Тип объекта</label>
-                                <select onchange="OnSelectionChange (this)" class="form-control" name="type_obj_id">
+                                <select required onchange="OnSelectionChange (this)" class="form-control" name="type_obj_id">
                                     <option value=""></option>
                                     @foreach($type_of_objs as $type)
                                         <option value={{$type->id}}>{{$type->name}}</option>
@@ -123,7 +123,7 @@
                             <div class="form-group">
                                 <label for="room">Количество комнат</label>
                                 {{--<input type="number" min="1" name="room" class="form-control">--}}
-                                <select name="room" class="form-control">
+                                <select name="room"  class="form-control">
                                     @foreach($rooms as $room)
                                         <option value="{{$room->id}}">{{$room->name}}</option>
                                         @endforeach
@@ -134,7 +134,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="area">Площадь квартиры</label>
-                                <input type="number" min="1" name="area" class="form-control" placeholder="м.кв">
+                                <input type="number" required min="1" name="area" class="form-control" placeholder="м.кв">
                             </div>
                         </div>
                     </div>
@@ -161,13 +161,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="floor">Этаж</label>
-                                <input type="number" min="1" name="floor" class="form-control">
+                                <input type="number" min="1" required name="floor" class="form-control">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="area">Этажность</label>
-                                <input type="number" min="1" name="floors" class="form-control" placeholder="">
+                                <input type="number" min="1" name="floors" required class="form-control" placeholder="">
                             </div>
                         </div>
                     </div>
@@ -177,7 +177,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Р</div>
                             </div>
-                            <input type="number" min="1" name="price" class="form-control" id="" placeholder="Цена">
+                            <input type="number" required min="1" name="price" class="form-control"  placeholder="Цена">
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Описание</label>
-                <textarea class="form-control" name="description" rows="3"></textarea>
+                <textarea class="form-control" required name="description" rows="3"></textarea>
             </div>
         </div>
         <div class="form-group">
@@ -230,7 +230,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Создать объект</button>
+        <button type="submit" class="d-none" id="btn">Создать объект</button>
     </form>
     <script type="text/javascript">
         function OnSelectionChange (select) {
@@ -316,11 +316,17 @@
                 document.getElementById('md-street').value = suggestion.data.street;
                 //document.getElementById('md-house').value = suggestion.data.house+suggestion.data.block_type+suggestion.data.block;
                 document.getElementById('md-flat').value = suggestion.data.flat;
-                document.getElementById('md-city').value = suggestion.data.city;
+                document.getElementById('md-city').value = suggestion.data.street;
                 //document.getElementById('md-district').value = suggestion.data.city_district;
                 //   myMap.center([suggestion.data.geo_lat,suggestion.data.geo_lon]);
                 // document.getElementById('md-area').value = suggestion.data.flat_area;
                 //document.getElementById('md-house').value = suggestion.data.house+suggestion.data.block_type+suggestion.data.block;
+                if (suggestion.data.flat==null || suggestion.data.street==null || suggestion.data.street==null || suggestion.data.house==null){
+                    alert('Введите полный адрес (Город,Улица,Номер дома,Номер квартиры');
+                }
+                else {
+                    document.getElementById('btn').className="btn btn-primary";
+                }
                 console.log(suggestion);
                 if(suggestion.data.block_type==null){
                     document.getElementById('md-house').value = suggestion.data.house;

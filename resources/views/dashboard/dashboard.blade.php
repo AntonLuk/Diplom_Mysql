@@ -109,20 +109,22 @@
     <div class="">
         <div class="form-group">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label>Заявки за текущий месяц</label>
                     {!! $appChart->render() !!}
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label>Объекты за текущий месяц</label>
                     {!! $objsChart->render() !!}
                 </div>
-                <div class="col-md-4">
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
                     <label>Заявки групп в текущем месяце</label>
                     {!! $testChart->render() !!}
                 </div>
-
-
             </div>
         </div>
     </div>

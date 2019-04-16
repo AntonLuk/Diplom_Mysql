@@ -37,7 +37,7 @@
 <body>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">5-100</a>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Поиск">
+    <input class="form-control form-control-dark w-100" id="address1" name="address" type="text" placeholder="Поиск объектов" aria-label="Поиск">
 
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -77,7 +77,7 @@
     <br>
     <br>
     <div class="row">
-        @include('layouts.menu1')
+        @include('layouts.menu')
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
             {{--<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">--}}
@@ -106,6 +106,19 @@
 {{--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
+<link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/css/suggestions.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/js/jquery.suggestions.min.js"></script>
 
-
+<script>
+    $("#address1").suggestions({
+        token: "76f21ccf3ffdbbd62a351a04db7fd236c29a4c4e",
+        type: "ADDRESS",
+        /* Вызывается, когда пользователь выбирает одну из подсказок */
+        onSelect: function(suggestion) {
+            console.log(suggestion);
+            location.href = "/objs/searchAddress/"+document.getElementById("address1").value;
+        }
+    });
+</script>
 </body></html>

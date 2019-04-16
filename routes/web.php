@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/index','ObjsController@index')->name('objs.index');
         Route::get('/show/{id}','ObjsController@show')->name('objs.show');
         Route::post('/search','ObjsController@search')->name('objs.search');
+        Route::get('/searchAddress/{address}','ObjsController@searchAdd');
     });
 
 
@@ -61,6 +62,11 @@ Route::group(['middleware' => ['auth']], function () {
     });
     Route::group(['prefix' => 'files'], function () {
         Route::get('/getAppFile/{Fileid}{AppID}','FilesController@getAppFile')->name('files.getAppFile');
+        Route::get('/deleteAppFile/{Fileid}{AppID}','FilesController@deleteAppFile')->name('files.deleteAppFile');
+
+    });
+    Route::group(['prefix' => 'deals'], function () {
+        Route::get('/addForm/{id}','DealsController@getAppFile')->name('deals.addform');
         Route::get('/deleteAppFile/{Fileid}{AppID}','FilesController@deleteAppFile')->name('files.deleteAppFile');
 
     });
