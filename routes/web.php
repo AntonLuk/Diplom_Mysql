@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
        Route::get('/show/{id}','ClientsController@show')->name('clients.show');
        Route::post('/update','ClientsController@update')->name('clients.update');
        Route::get('/addForm','ClientsController@addForm')->name('clients.addForm');
-        Route::get('/destroy/{id}','ClientsController@info')->name('clients.destroy');
+        Route::get('/destroy/{id}','ClientsController@destroy')->name('clients.destroy');
         Route::get('/addForm','ClientsController@addForm')->name('clients.addForm');
        Route::post('/create','ClientsController@create')->name('clients.create');
     });

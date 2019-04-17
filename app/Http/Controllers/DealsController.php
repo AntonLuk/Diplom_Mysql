@@ -6,5 +6,7 @@ use Illuminate\Http\Request;
 
 class DealsController extends Controller
 {
-    //
+    public function addForm(){
+        
+    }
 }

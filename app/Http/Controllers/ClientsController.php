@@ -76,6 +76,11 @@ class ClientsController extends Controller
             return redirect(route('clients.data'));
        // return(Auth::user()->id);
     }
+    public function destroy($id){
+        $client=Client::find($id);
+        $client->delete();
+        return redirect(route('clients.data'));
+    }
     public function update(Request $request){
 //        //$client=new Client();
         $client=Client::where('id', $request->id)->first();

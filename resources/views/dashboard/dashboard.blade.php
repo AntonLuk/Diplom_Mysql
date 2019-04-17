@@ -106,6 +106,27 @@
         {{--</div>--}}
     {{--</div>--}}
     <hr>
+    <div class="row">
+        <div class="col-md-8">
+            <div id="map" style="height: 350px"></div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-check">
+                <input class="form-check-input room" type="checkbox" onchange="rooms()" value=0 name="room[]" id="0room">
+                <label class="form-check-label" for="defaultCheck1">
+                    Студия
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input room" type="checkbox" value=1 onchange="rooms()" name="room[]" id="1room">
+                <label class="form-check-label" for="defaultCheck2">
+                    1
+                </label>
+            </div>
+        </div>
+    </div>
+    <hr>
     <div class="">
         <div class="form-group">
             <div class="row">
@@ -128,7 +149,125 @@
             </div>
         </div>
     </div>
+    <script>
+        function rooms() {
+            let checkboxes=document.getElementsByClassName('room');
+            let checkboxesChecked = []; // можно в массиве их хранить, если нужно использовать
+            for (let index = 0; index < checkboxes.length; index++) {
+                if (checkboxes[index].checked) {
+                    checkboxesChecked.push(checkboxes[index].value); // положим в массив выбранный
+                    console.log(checkboxes[index].value); // делайте что нужно - это для наглядности
+                }
+            }
+            //console.log(check);
+        }
+    </script>
+<script>
+    var div=document.getElementById("map");
+    div.innerText = "";
+    var myMap;
+    ymaps.ready(init);
+    function init() {
+        let objs=@json($objs);
+        console.log(objs);
+        var myMap = new ymaps.Map("map", {
+                center: [57.153033, 65.534328],
+                zoom: 10
+            }, {
+                searchControlProvider: 'yandex#search'
+            });
 
+            // Создаем геообъект с типом геометрии "Точка".
+            // myGeoObject = new ymaps.GeoObject({
+            //     // Описание геометрии.
+            //     geometry: {
+            //         type: "Point",
+            //         coordinates: [57.153033, 65.534328]
+            //     },
+            //     // Свойства.
+            //     properties: {
+            //         // Контент метки.
+            //         iconContent: 'Я тащусь',
+            //         hintContent: 'Ну давай уже тащи'
+            //     }
+            // }, {
+            //     // Опции.
+            //     // Иконка метки будет растягиваться под размер ее содержимого.
+            //     preset: 'islands#blackStretchyIcon',
+            //     // Метку можно перемещать.
+            //     draggable: true
+            // });
+        let room;
+        myMap.geoObjects
+            //.add(myGeoObject)
+            // .add(myPieChart)
+            for(let i=0;i<objs.length;i++){
+            if(objs[i].room.name=='студия'){
+                 room=0;
+            }else{
+                 room=objs[i].room.name;
+            }
+               // let room =objs[i].room.name;
 
+                myMap.geoObjects.add(new ymaps.Placemark([objs[i].geo_lat,objs[i].geo_lon], {
+                    iconContent:room,
+                    balloonContent: `${objs[i].address} <br>Цена: ${objs[i].price} <br> <a href="objs/show/${objs[i].id}" class="btn btn-info">Открыть</a>`
+                }, {
+                    preset: 'islands#icon',
+                    iconColor: '#735184'
+                }))
+            }
+
+            // .add(new ymaps.Placemark([55.833436, 37.715175], {
+            //     balloonContent: '<strong>серобуромалиновый</strong> цвет'
+            // }, {
+            //     preset: 'islands#dotIcon',
+            //     iconColor: '#735184'
+            // }))
+            // .add(new ymaps.Placemark([55.687086, 37.529789], {
+            //     balloonContent: 'цвет <strong>влюбленной жабы</strong>'
+            // }, {
+            //     preset: 'islands#circleIcon',
+            //     iconColor: '#3caa3c'
+            // }))
+            // .add(new ymaps.Placemark([55.782392, 37.614924], {
+            //     balloonContent: 'цвет <strong>детской неожиданности</strong>'
+            // }, {
+            //     preset: 'islands#circleDotIcon',
+            //     iconColor: 'yellow'
+            // }))
+            // .add(new ymaps.Placemark([55.642063, 37.656123], {
+            //     balloonContent: 'цвет <strong>красный</strong>'
+            // }, {
+            //     preset: 'islands#redSportIcon'
+            // }))
+            // .add(new ymaps.Placemark([55.826479, 37.487208], {
+            //     balloonContent: 'цвет <strong>фэйсбука</strong>'
+            // }, {
+            //     preset: 'islands#governmentCircleIcon',
+            //     iconColor: '#3b5998'
+            // }))
+            // .add(new ymaps.Placemark([55.694843, 37.435023], {
+            //     balloonContent: 'цвет <strong>носика Гены</strong>',
+            //     iconCaption: 'Очень длиннный, но невероятно интересный текст'
+            // }, {
+            //     preset: 'islands#greenDotIconWithCaption'
+            // }))
+            // .add(new ymaps.Placemark([55.790139, 37.814052], {
+            //     balloonContent: 'цвет <strong>голубой</strong>',
+            //     iconCaption: 'Очень длиннный, но невероятно интересный текст'
+            // }, {
+            //     preset: 'islands#blueCircleDotIconWithCaption',
+            //     iconCaptionMaxWidth: '50'
+            // }));
+    }
+</script>
+<script>
+    function redirect(id) {
+        alert(id);
+        alert('objs/show/{id}'.replace('{id}', id));
+        //window.location = 'objs/show/{id}';
+    }
+</script>
 
     @endsection

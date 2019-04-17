@@ -40,18 +40,16 @@
                     {{--<td><a href={{route('users.info',['id'=>$user->id])}}>Показать</a></td>--}}
                     {{--<td><a href="info/{{$user->id}}">Показать</a></td>--}}
 
-                    <td>	<input type="button" class="btn btn-success"
-                                   value="Создать заявку"
-                                   onclick='location.href = "{{route('applications.addFormWithClient',['client_id'=>$client->id])}}";'>
+                    <td>	<input type="button" class="btn btn-success" value="Создать заявку" onclick='location.href = "{{route('applications.addFormWithClient',['client_id'=>$client->id])}}";'>
                     </td>
                     <td>	<input type="button" class="btn btn-info"
                                    value="Показать"
                                    onclick='location.href = "{{route('clients.show',['id'=>$client->id])}}";'>
                     </td>
-                    <td>	<input type="button"class="btn btn-danger"
+                    <td>	<input type="button" class="btn btn-danger"
                                    value="Удалить"
-                                   onclick='if(confirm("Вы действительно хотите удалить клиента?")) {
-                                           location.href = "clients/destroy/{{$client->id}}";}'>
+                                   onclick='if(confirm("Вы действительно хотите удалить пользователя?")) {
+                                           location.href = "{{route('clients.destroy',['id'=>$client->id])}}";}'>
                     </td>
                 </tr>
             @endforeach

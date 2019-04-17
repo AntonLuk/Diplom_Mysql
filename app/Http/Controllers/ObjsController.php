@@ -41,6 +41,11 @@ class ObjsController extends Controller
         return view('objs.add',compact('san_nodes','type_materials','type_of_objs','type_repairs','districts','applications','users','constructs','complexs','rooms'));
         //return(dd($districts));
     }
+    public function destroy($id){
+        $obj=Obj::find($id);
+        $obj->delete();
+        return redirect(route('objs.index'));
+    }
     public function index(){
         $user=Auth::user();
 //        if($user->hasRole('administrator')){
@@ -132,7 +137,7 @@ class ObjsController extends Controller
         return(redirect(route('objs.index')));
     }
     public function edit(Request $request){
-        $obj=Obj::find($request->id)->first();
+        $obj=Obj::find($request->id);
         $obj->geo_lat=$request->geo_lat;
         $obj->geo_lon=$request->geo_lon;
         $obj->city=$request->city;

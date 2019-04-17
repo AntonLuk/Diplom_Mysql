@@ -190,6 +190,7 @@ class PagesController extends Controller
     }
     public function dashboard()
     {
+        $objs=Obj::with('room')->get();
         $applicationsCount = [];
         $applicationsCount['buy'] = Application::where('type_client_id',1)->count();
         $applicationsCount['sold'] = Application::where('type_client_id',2)->count();
@@ -201,7 +202,7 @@ class PagesController extends Controller
         $appChart=$this->chartApplications();
         $objsChart=$this->chartObjs();
         $testChart=$this->chartGroupsApplications();
-        return view('dashboard.dashboard',compact('appChart','objsChart','user','applicationsCount','clientsCount','objsCount','testChart'));
+        return view('dashboard.dashboard',compact('appChart','objsChart','user','applicationsCount','clientsCount','objsCount','testChart','objs'));
         //return dd($days);
 
     }
