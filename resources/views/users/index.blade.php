@@ -40,16 +40,18 @@
                 @endforeach
                 {{--<td><a href={{route('users.info',['id'=>$user->id])}}>Показать</a></td>--}}
                 {{--<td><a href={{route('users.destroy',['id'=>$user->id])}}>Удалить</a></td>--}}
-                <td>	<input type="button" style="width:80px;height:35px; "
+                <td>	<input type="button" class="btn btn-info"
                                value="Показать"
                                onclick='location.href = "{{route('users.info',['id'=>$user->id])}}";'>
                 </td>
                 @if(Entrust::hasRole('administrator'))
-                <td>	<input type="button" style="width:80px;height:35px; "
+                    @if($user->id!=1)
+                <td>	<input type="button" class="btn btn-danger"
                             value="Удалить"
                             onclick='if(confirm("Вы действительно хотите удалить пользователя?")) {
                                 location.href = "{{route('users.destroy',['id'=>$user->id])}}";}'>
                 </td>
+                        @endif
                 @endif
                 {{--<td><a href="info/{{$user->id}}">Показать</a></td>--}}
             </tr>
