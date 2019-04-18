@@ -52,6 +52,7 @@
                                 location.href = "{{route('users.destroy',['id'=>$user->id])}}";}'>
                             @endif
                 </td>
+                        @endif
                 @endif
                 {{--<td><a href="info/{{$user->id}}">Показать</a></td>--}}
             </tr>

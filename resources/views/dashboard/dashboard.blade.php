@@ -107,11 +107,11 @@
     {{--</div>--}}
     <hr>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div id="map" style="height: 350px"></div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-2">
             <div class="form-check">
                 <input class="form-check-input room" type="checkbox" onchange="rooms()" value=0 name="room[]" id="0room">
                 <label class="form-check-label" for="defaultCheck1">
