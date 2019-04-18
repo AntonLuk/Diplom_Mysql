@@ -79,8 +79,7 @@
                 <div data-allowfullscreen="true" data-width="200" data-maxwidth="300" id="fotorama{{$obj->id}}">
                     @foreach($obj->images as $image)
                         <img src="{{asset('storage/images/objs/'.$obj->id.'/'.$image->image_path)}}">
-                    {{--<img src="{{asset('storage/images/objs/'.$obj->id.'/'.$obj->images[0]->image_path)}}">--}}
-                    {{--<img src="{{asset('storage/images/objs/'.$obj->id.'/'.$obj->images[1]->image_path)}}">--}}
+
                         @endforeach
                 </div>
                 <script type="text/javascript">
@@ -91,6 +90,7 @@
                     });
                 </script>
             </td>
+            {{--<td>{{asset('storage/images/objs/'.$obj->id)}}</td>--}}
             <td>г.{{$obj->city}},ул.{{$obj->street}}, {{$obj->house}}</td>
             <td>{{$obj->floor}}/{{$obj->floors}}</td>
             @if(Entrust::hasRole('administrator'))

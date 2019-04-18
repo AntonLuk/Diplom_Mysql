@@ -190,19 +190,27 @@ class PagesController extends Controller
     }
     public function dashboard()
     {
-        $objs=Obj::with('room')->get();
+        if(Auth::user()->hasRole('administrator')){
+        $objs=Obj::with(['room','images'])->get();
+
+        }else{
+            $objs=Obj::where('user_id',Auth::user()->id)->with(['room','images'])->get();
+        }
         $applicationsCount = [];
         $applicationsCount['buy'] = Application::where('type_client_id',1)->count();
         $applicationsCount['sold'] = Application::where('type_client_id',2)->count();
         $applicationsCount['all']=Application::all()->count();
-        $objsCount=Obj::all()->count();
-       // $applicationsCount=Application::all()->count();
+        //$objsCount=Obj::all()->count();
+        if(Auth::user()->hasRole('administrator')){
         $clientsCount=Client::all()->count();
+        }else{
+            $clientsCount=Application::where('user_id',Auth::user()->id)->groupBy('client_id')->count();
+        }
         $user=User::find(Auth::user()->id);
         $appChart=$this->chartApplications();
         $objsChart=$this->chartObjs();
         $testChart=$this->chartGroupsApplications();
-        return view('dashboard.dashboard',compact('appChart','objsChart','user','applicationsCount','clientsCount','objsCount','testChart','objs'));
+        return view('dashboard.dashboard',compact('appChart','objsChart','user','applicationsCount','clientsCount','testChart','objs'));
         //return dd($days);
 
     }

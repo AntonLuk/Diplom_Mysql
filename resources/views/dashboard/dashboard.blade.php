@@ -38,7 +38,7 @@
                         <a class="btn btn-info fa fa-plus fa-2x pull-right" href="{{route('objs.addForm')}}"></a>
                     </div>
                     <h6 class="text-uppercase">Объектов</h6>
-                    <h1 class="display-4">{{$objsCount}}</h1>
+                    <h1 class="display-4">{{count($objs)}}</h1>
                 </div>
             </div>
         </div>
@@ -172,94 +172,126 @@
         console.log(objs);
         var myMap = new ymaps.Map("map", {
                 center: [57.153033, 65.534328],
-                zoom: 10
+            controls: [],
+                zoom: 10,
+
             }, {
                 searchControlProvider: 'yandex#search'
             });
-
-            // Создаем геообъект с типом геометрии "Точка".
-            // myGeoObject = new ymaps.GeoObject({
-            //     // Описание геометрии.
-            //     geometry: {
-            //         type: "Point",
-            //         coordinates: [57.153033, 65.534328]
-            //     },
-            //     // Свойства.
-            //     properties: {
-            //         // Контент метки.
-            //         iconContent: 'Я тащусь',
-            //         hintContent: 'Ну давай уже тащи'
-            //     }
-            // }, {
-            //     // Опции.
-            //     // Иконка метки будет растягиваться под размер ее содержимого.
-            //     preset: 'islands#blackStretchyIcon',
-            //     // Метку можно перемещать.
-            //     draggable: true
-            // });
+        myMap.controls.add('zoomControl');
         let room;
-        myMap.geoObjects
-            //.add(myGeoObject)
-            // .add(myPieChart)
-            for(let i=0;i<objs.length;i++){
-            if(objs[i].room.name=='студия'){
-                 room=0;
-            }else{
-                 room=objs[i].room.name;
-            }
-               // let room =objs[i].room.name;
-
-                myMap.geoObjects.add(new ymaps.Placemark([objs[i].geo_lat,objs[i].geo_lon], {
+        clusterer = new ymaps.Clusterer({
+            /**
+             * Через кластеризатор можно указать только стили кластеров,
+             * стили для меток нужно назначать каждой метке отдельно.
+             * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/option.presetStorage.xml
+             */
+            preset: 'islands#invertedVioletClusterIcons',
+            /**
+             * Ставим true, если хотим кластеризовать только точки с одинаковыми координатами.
+             */
+            groupByCoordinates: false,
+            /**
+             * Опции кластеров указываем в кластеризаторе с префиксом "cluster".
+             * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ClusterPlacemark.xml
+             */
+            clusterDisableClickZoom: true,
+            clusterHideIconOnBalloonOpen: false,
+            geoObjectHideIconOnBalloonOpen: false
+        }),
+            /**
+             * Функция возвращает объект, содержащий данные метки.
+             * Поле данных clusterCaption будет отображено в списке геообъектов в балуне кластера.
+             * Поле balloonContentBody - источник данных для контента балуна.
+             * Оба поля поддерживают HTML-разметку.
+             * Список полей данных, которые используют стандартные макеты содержимого иконки метки
+             * и балуна геообъектов, можно посмотреть в документации.
+             * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/GeoObject.xml
+             */
+            getPointData = function (obj) {
+                if(obj.room.name=='студия'){
+                             room=0;
+                        }else{
+                             room=objs[i].room.name;
+                        }
+                return {
                     iconContent:room,
-                    balloonContent: `${objs[i].address} <br>Цена: ${objs[i].price} <br> <a href="objs/show/${objs[i].id}" class="btn btn-info">Открыть</a>`
-                }, {
-                    preset: 'islands#icon',
-                    iconColor: '#735184'
-                }))
-            }
+                    balloonContentHeader: 'Объект №<strong>' + obj.id + '</strong>',
 
-            // .add(new ymaps.Placemark([55.833436, 37.715175], {
-            //     balloonContent: '<strong>серобуромалиновый</strong> цвет'
-            // }, {
-            //     preset: 'islands#dotIcon',
-            //     iconColor: '#735184'
-            // }))
-            // .add(new ymaps.Placemark([55.687086, 37.529789], {
-            //     balloonContent: 'цвет <strong>влюбленной жабы</strong>'
-            // }, {
-            //     preset: 'islands#circleIcon',
-            //     iconColor: '#3caa3c'
-            // }))
-            // .add(new ymaps.Placemark([55.782392, 37.614924], {
-            //     balloonContent: 'цвет <strong>детской неожиданности</strong>'
-            // }, {
-            //     preset: 'islands#circleDotIcon',
-            //     iconColor: 'yellow'
-            // }))
-            // .add(new ymaps.Placemark([55.642063, 37.656123], {
-            //     balloonContent: 'цвет <strong>красный</strong>'
-            // }, {
-            //     preset: 'islands#redSportIcon'
-            // }))
-            // .add(new ymaps.Placemark([55.826479, 37.487208], {
-            //     balloonContent: 'цвет <strong>фэйсбука</strong>'
-            // }, {
-            //     preset: 'islands#governmentCircleIcon',
-            //     iconColor: '#3b5998'
-            // }))
-            // .add(new ymaps.Placemark([55.694843, 37.435023], {
-            //     balloonContent: 'цвет <strong>носика Гены</strong>',
-            //     iconCaption: 'Очень длиннный, но невероятно интересный текст'
-            // }, {
-            //     preset: 'islands#greenDotIconWithCaption'
-            // }))
-            // .add(new ymaps.Placemark([55.790139, 37.814052], {
-            //     balloonContent: 'цвет <strong>голубой</strong>',
-            //     iconCaption: 'Очень длиннный, но невероятно интересный текст'
-            // }, {
-            //     preset: 'islands#blueCircleDotIconWithCaption',
-            //     iconCaptionMaxWidth: '50'
-            // }));
+                    balloonContent: `<div class="" style="height:100px; position:relative;"><img src="storage/images/objs/${obj.id}/${obj.images[0].image_path}" alt="" class="img-responsive" style="position:absolute;height:100%;"></div><div class="form-group"><div class="form-control">${obj.address}</div><div class="form-control"><label>Цена:</label>${obj.price} руб.</div><br><a href="objs/show/${obj.id}" class="btn btn-info">Открыть</a>`,
+                    clusterCaption: 'Объект <strong>' + obj.id + '  '+obj.room.name+'</strong>'
+
+                };
+            },
+            /**
+             * Функция возвращает объект, содержащий опции метки.
+             * Все опции, которые поддерживают геообъекты, можно посмотреть в документации.
+             * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/GeoObject.xml
+             */
+            getPointOptions = function () {
+                return {
+                    preset: 'islands#violetIcon'
+                };
+            },
+
+            geoObjects = [];
+
+        /**
+         * Данные передаются вторым параметром в конструктор метки, опции - третьим.
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/Placemark.xml#constructor-summary
+         */
+        for(let i=0;i<objs.length;i++){
+            let point=[objs[i].geo_lat,objs[i].geo_lon];
+            console.log(point);
+            geoObjects[i] = new ymaps.Placemark(point, getPointData(objs[i]), getPointOptions());
+        }
+
+        /**
+         * Можно менять опции кластеризатора после создания.
+         */
+        clusterer.options.set({
+            gridSize: 80,
+            clusterDisableClickZoom: true
+        });
+
+        /**
+         * В кластеризатор можно добавить javascript-массив меток (не геоколлекцию) или одну метку.
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/Clusterer.xml#add
+         */
+        clusterer.add(geoObjects);
+        myMap.geoObjects.add(clusterer);
+
+        /**
+         * Спозиционируем карту так, чтобы на ней были видны все объекты.
+         */
+
+        // myMap.setBounds(clusterer.getBounds(), {
+        //     checkZoomRange: true
+        // });
+
+        // myMap.geoObjects
+        //     //.add(myGeoObject)
+        //     // .add(myPieChart)
+        //     for(let i=0;i<objs.length;i++){
+        //     console.log(objs[i].images[0].image_path);
+        //     if(objs[i].room.name=='студия'){
+        //          room=0;
+        //     }else{
+        //          room=objs[i].room.name;
+        //     }
+        //        // let room =objs[i].room.name;
+        //
+        //         myMap.geoObjects.add(new ymaps.Placemark([objs[i].geo_lat,objs[i].geo_lon], {
+        //             iconContent:room,
+        //             balloonContent: `<div class="" style="height:100px; position:relative;"><img src="storage/images/objs/${objs[i].id}/${objs[i].images[0].image_path}" alt="" class="img-responsive" style="position:absolute;height:100%;"></div>${objs[i].address} <br>Цена: ${objs[i].price} <br> <a href="objs/show/${objs[i].id}" class="btn btn-info">Открыть</a>`
+        //
+        //                 // balloonContent: `<div class="" style="height:100px; position:relative;"><img src="storage/images/objs/${objs[i].id}/${objs[i].images[0].image_path}" alt="" class="img-responsive" style="position:absolute;height:100%;"></div>${objs[i].address} <br>Цена: ${objs[i].price} <br> <a href="objs/show/${objs[i].id}" class="btn btn-info">Открыть</a>`
+        //         }, {
+        //             preset: 'islands#icon',
+        //             iconColor: '#735184'
+        //         }))
+        //     }
+
     }
 </script>
 <script>
