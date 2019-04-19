@@ -56,7 +56,7 @@ return [
             'engine' => null,
         ],
         'mysqlher' => [
-            'driver' => 'pgsql',
+            'driver' => 'mysql',
             'host' => $DATABASE_URL["host"],
             'port' => $DATABASE_URL["port"],
             'database' => ltrim($DATABASE_URL["path"], "/"),
