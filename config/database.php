@@ -1,5 +1,5 @@
 <?php
-$DATABASE_URL=parse_url(getenv("mysql://b583bdf9b4b92d:c174ead1@us-cdbr-iron-east-02.cleardb.net/heroku_cdb9e3295e4afbe?reconnect=true"));
+$DATABASE_URL=parse_url('mysql://b583bdf9b4b92d:c174ead1@us-cdbr-iron-east-02.cleardb.net/heroku_cdb9e3295e4afbe?reconnect=true');
 return [
 
     /*
