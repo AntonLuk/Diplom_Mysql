@@ -1,5 +1,5 @@
 <?php
-
+$DATABASE_URL=parse_url(getenv("mysql://b583bdf9b4b92d:c174ead1@us-cdbr-iron-east-02.cleardb.net/heroku_cdb9e3295e4afbe?reconnect=true"));
 return [
 
     /*
@@ -55,7 +55,18 @@ return [
             'strict' => false,
             'engine' => null,
         ],
-
+        'mysqlher' => [
+            'driver' => 'pgsql',
+            'host' => $DATABASE_URL["host"],
+            'port' => $DATABASE_URL["port"],
+            'database' => ltrim($DATABASE_URL["path"], "/"),
+            'username' => $DATABASE_URL["user"],
+            'password' => $DATABASE_URL["pass"],
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+            'sslmode' => 'require',
+        ],
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),
