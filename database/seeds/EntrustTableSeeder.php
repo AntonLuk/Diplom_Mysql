@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Role;
+use App\Permission;
+use App\PermissionRole;
 class EntrustTableSeeder extends Seeder
 {
     /**
