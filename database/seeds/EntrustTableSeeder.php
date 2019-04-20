@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Role;
 use App\Permission;
 use App\PermissionRole;
+use App\RoleUser;
 class EntrustTableSeeder extends Seeder
 {
     /**
@@ -199,5 +200,11 @@ class EntrustTableSeeder extends Seeder
         $deleteClient1->permission_id = $deleteClient->id;
         $deleteClient1->timestamps = false;
         $deleteClient1->save();
+
+        $newrole = new RoleUser;
+        $newrole->role_id = '1';
+        $newrole->user_id = '1';
+        $newrole->timestamps = false;
+        $newrole->save();
     }
 }
