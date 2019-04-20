@@ -202,7 +202,7 @@ class EntrustTableSeeder extends Seeder
         $deleteClient1->save();
 
         $newrole = new RoleUser;
-        $newrole->role_id = '1';
+        $newrole->role_id = $adminRole->id;
         $newrole->user_id = '1';
         $newrole->timestamps = false;
         $newrole->save();
