@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-    
+
     {{--<div class="row">--}}
         {{--<div class="container">--}}
             {{--<div class="card card-default card-body">--}}
@@ -213,7 +213,7 @@
                 if(obj.room.name=='студия'){
                              room=0;
                         }else{
-                             room=objs[i].room.name;
+                             room=obj.room.name;
                         }
                 return {
                     iconContent:room,
