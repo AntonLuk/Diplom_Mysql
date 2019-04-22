@@ -131,6 +131,7 @@ class UsersController extends Controller
             $destinationPath = public_path(). '/storage/users/'.$user->id;
             $filename = str_random(8) . '_' . $file->getClientOriginalName() ;
             $file->move($destinationPath, $filename);
+           //Storage::disk('rackspace')->put($destinationPath,$filename);
         }
         else{
             $filename='default_avatar.jpg';

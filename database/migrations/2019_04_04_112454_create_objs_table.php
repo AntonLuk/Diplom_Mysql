@@ -39,10 +39,10 @@ class CreateObjsTable extends Migration
             $table->integer('floors')->nullable();
             $table->bigInteger('price');
             $table->integer('application_id')->unsigned();
-            $table->foreign('application_id')->references('id')->on('applications');
+            $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
             $table->string('number_client')->nullable();
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->double('geo_lat');
             $table->double('geo_lon');
             $table->timestamps();
