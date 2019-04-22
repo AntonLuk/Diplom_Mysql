@@ -127,6 +127,7 @@ class ObjsController extends Controller
                 $image=new ImageObj();
                 $filename=str_random(8).'_'.($obj->id).'_'.$file->getClientOriginalName();
                 $file->move($destinationPath,$filename);
+                //Storage::disk('rackspace')->put($destinationPath,$filename);
                 $image->image_path=$filename;
                 $image->obj_id=$obj->id;
                 $image->save();

@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'cloud' => env('FILESYSTEM_CLOUD', 's3'),
+    'cloud' => env('FILESYSTEM_CLOUD', 'rackspace'),
 
     /*
     |--------------------------------------------------------------------------
@@ -47,7 +47,15 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-
+        'rackspace' => [
+            'driver'    => 'rackspace',
+            'username'  => 'donkomar',
+            'key'       => '3266039668eb43a481f4b280c6792b36',
+            'container' => 'crm',
+            'endpoint'  => 'https://identity.api.rackspacecloud.com/v2.0/',
+            'region'    => 'IAD',
+            'url_type'  => 'publicURL',
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
