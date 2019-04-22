@@ -49,7 +49,7 @@
                     <td>	<input type="button" class="btn btn-danger"
                                    value="Удалить"
                                    onclick='if(confirm("Вы действительно хотите удалить пользователя?")) {
-                                       location.href ={{route('cliets.destroy',['id'=>$client->id])}};}'>
+                                       location.href ="{{route('clients.destroy',['id'=>$client->id])}}";}'>
                     </td>
                 </tr>
             @endforeach

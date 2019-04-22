@@ -61,6 +61,7 @@ class UsersController extends Controller
         //return(dd($img));
     }
     public function update(Request $request){
+        //return dd($request);
         if ($request->hasFile('image_path')) {
             if (!is_dir(public_path(). '/storage/users')) {
                 mkdir(public_path(). '/storage/users', 0777, true);
@@ -81,6 +82,7 @@ class UsersController extends Controller
         if($request->hasFile('image_path')){
             $user->image_path=$filename;
         }
+
         $user->save();
 
         //$depuser='';
@@ -88,10 +90,12 @@ class UsersController extends Controller
 
             foreach ($user->departments as $dep) {
                 if ($dep->id != $request->department) {
-                    //$depuser=DepartmentUser::where('user_id', '=', $request->id)->first();
-                    DepartmentUser::where('user_id', $request->id)
-                        ->where('department_id', $dep->id)
-                        ->update(['department_id' => $request->department]);
+                    $depuser=DepartmentUser::where('user_id', '=', $request->id)->first();
+//                    DepartmentUser::where('user_id', $request->id)
+//                        ->where('department_id', $dep->id)
+//                        ->update(['department_id' => $request->department]);
+                    $depuser->department_id=$request->department;
+                    $depuser->save();
                 }
             }
 
@@ -104,6 +108,7 @@ class UsersController extends Controller
                     ->update(['role_id' => $request->role]);
             }
         }
+
         //return(dd($request->file('image_path')));
         return redirect(route('users.data'));
         //return(dd($user1->departments));
