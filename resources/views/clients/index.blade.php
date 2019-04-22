@@ -49,7 +49,7 @@
                     <td>	<input type="button" class="btn btn-danger"
                                    value="Удалить"
                                    onclick='if(confirm("Вы действительно хотите удалить пользователя?")) {
-                                           location.href = "{{route('clients.destroy',['id'=>$client->id])}}";}'>
+                                       location.href ={{route('cliets.destroy',['id'=>$client->id])}};}'>
                     </td>
                 </tr>
             @endforeach
@@ -81,10 +81,7 @@
                     </td>
                     <td><a class="btn btn-info" href="{{route('clients.show',['id'=>$client->client->id])}}">Показать</a></td>
 
-                    <td>	<input type="button"class="btn btn-danger"
-                                   value="Удалить"
-                                   onclick='if(confirm("Вы действительно хотите удалить клиента?")) {
-                                           location.href = "clients/destroy/{{$client->client->id}}";}'>
+                    <td>	<a href="{{route('clients.destroy',['id'=>$client->id])}}" class="btn btn-danger">Удалить</a>
                     </td>
                 </tr>
                 @endforeach
