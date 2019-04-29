@@ -70,6 +70,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/deleteAppFile/{Fileid}{AppID}','FilesController@deleteAppFile')->name('files.deleteAppFile');
 
     });
+    Route::group(['prefix' => 'contracts'], function () {
+//        Route::get('/addForm/{id}','DealsController@getAppFile')->name('deals.addform');
+        Route::get('/index','ContractsController@index')->name('contracts.index');
+
+    });
+    Route::group(['prefix' => 'entrust'], function () {
+//        Route::get('/addForm/{id}','DealsController@getAppFile')->name('deals.addform');
+        Route::get('/index','EntrustController@index')->name('entrust.index');
+
+    });
     Route::get('/home', 'HomeController@index')->name('home');
 
 });

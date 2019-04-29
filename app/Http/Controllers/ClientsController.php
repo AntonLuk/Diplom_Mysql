@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Application;
 use App\Client;
+use App\Contract;
+
 use Illuminate\Foundation\Console\Presets\React;
 use Illuminate\Http\Request;
 use App\TypeClient;
@@ -67,6 +69,10 @@ class ClientsController extends Controller
             $application->type_client_id=$request->type_client_id;
             $application->client_id=$client->id;
             $application->save();
+            $contract=new Contract();
+            $contract->number=round(microtime(true) * 1000);
+            $contract->client_id=$client->id;
+            $contract->save();
 //            if($request->comment!=null){
 //                $comment=new Comment();
 //                $comment->comment_content=$request->comment;

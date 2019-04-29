@@ -46,11 +46,23 @@
                             <li><a href="{{route('objs.index')}}">Все объекты</a></li>
                             <li><a href="{{route('objs.addForm')}}">Новый объект</a></li>
                         </ul>
+                    <li><a href=""><i class="fa fa-address-book-o"></i>Договора</a>
+                        <ul class="submenu">
+                            <li><a href="{{route('contracts.index')}}">Все договора</a></li>
+                            {{--<li><a href="{{route('objs.addForm')}}">Новый объект</a></li>--}}
+                        </ul>
                     <li><a href=""><i class="fa fa-thumbs-o-up"></i>Сделки</a>
                         <ul class="submenu">
                             <li><a href="">Все сделки</a></li>
                             <li><a href="">Новый объект</a></li>
                         </ul>
+                    @if(Entrust::hasRole('administrator'))
+                    <li><a href=""><i class="fa fa-cog"></i>Настройки</a>
+                        <ul class="submenu">
+                            <li><a href="{{route('entrust.index')}}">Настройка прав доступа</a></li>
+                            <li><a href="">Новый объект</a></li>
+                        </ul>
+                        @endif
                 </ul>
 
             </div>
