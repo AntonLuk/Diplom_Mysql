@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('content')
+    <form method="post" action="{{route('entrust.applyset')}}">
+        @csrf
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
@@ -17,7 +19,7 @@
                                     checked
                                     @endif
                             @endforeach
-                            name="{{$permission->name}}for{{$role->name}}">
+                            name="{{$role->id}}[]" value="{{$permission->id}}">
                            {{$permission->display_name}}</td>
                         @endforeach
                         {{--<td>	<input type="button" class="btn btn-info"--}}
@@ -34,4 +36,6 @@
             </tbody>
         </table>
     </div>
+        <input type="submit" class="btn btn-success" value="Применить">
+    </form>
     @endsection

@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'entrust'], function () {
 //        Route::get('/addForm/{id}','DealsController@getAppFile')->name('deals.addform');
         Route::get('/index','EntrustController@index')->name('entrust.index');
+        Route::post('/applyset','EntrustController@applyset')->name('entrust.applyset');
 
     });
     Route::get('/home', 'HomeController@index')->name('home');
