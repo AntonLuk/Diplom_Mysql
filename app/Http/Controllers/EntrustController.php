@@ -17,4 +17,18 @@ class EntrustController extends Controller
        //return dd($permissions);
        return view('entrust.index',compact('roles','permissions'));
     }
+    public function applyset(Request $request){
+        $roles=Role::all();
+        $permissons=Permission::all();
+        $test=$request->request->all();
+
+//        foreach ($request as $req){
+//            foreach ($req as $permission){
+//                $per=Permission::find($permission);
+//                array_push($test,$per);
+//            }
+//        }
+
+        return dd($test);
+    }
 }
