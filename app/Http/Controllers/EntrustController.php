@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Role;
 use App\Permission;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
 class EntrustController extends Controller
 {
     public function index(){
         $roles=Role::all();
         $permissions=Permission::with('roles')->get();
-        //return dd($permissions);
-        return view('entrust.index',compact('roles','permissions'));
+        //return Excel::download(new UsersExport, 'users.xlsx');
+        //return Excel::download(new UsersExport, 'users.xlsx');
+       //return dd($permissions);
+       return view('entrust.index',compact('roles','permissions'));
     }
 }
