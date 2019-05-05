@@ -15,7 +15,8 @@ class CreateRewardsTable extends Migration
     {
         Schema::create('rewards', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('room_count');
+            $table->integer('room_id')->unsigned();
+            $table->foreign('room_id')->references('id')->on('rooms');
             $table->decimal('percent');
             $table->integer('complex_id')->unsigned();
             $table->foreign('complex_id')->references('id')->on('complexs');

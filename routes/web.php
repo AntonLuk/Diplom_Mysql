@@ -66,7 +66,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     });
     Route::group(['prefix' => 'deals'], function () {
-        Route::get('/addForm/{id}','DealsController@getAppFile')->name('deals.addform');
+        Route::get('/addForm','DealsController@addForm')->name('deals.addForm');
+        Route::get('/addFormWithApp/{id}','DealsController@addFormWithApp')->name('deals.addFormWithApp');
+        Route::get('/addFormWithObj/{id}','DealsController@addFormWithObj')->name('deals.addFormWithObj');
         Route::get('/deleteAppFile/{Fileid}{AppID}','FilesController@deleteAppFile')->name('files.deleteAppFile');
 
     });

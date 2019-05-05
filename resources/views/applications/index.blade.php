@@ -24,6 +24,10 @@
                     <td>{{$application->stage->name}}</td>
                     <td>{{$application->user->name}}</td>
                     <td>	<input type="button" class="btn btn-success"
+                                   value="Создать сделку"
+                                   onclick='location.href = "{{route('deals.addFormWithApp',['id'=>$application->id])}}";'>
+                    </td>
+                    <td>	<input type="button" class="btn btn-success"
                                    value="Показать"
                                    onclick='location.href = "{{route('applications.show',['id'=>$application->id])}}";'>
                     </td>

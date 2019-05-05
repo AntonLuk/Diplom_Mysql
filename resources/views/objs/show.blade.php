@@ -266,6 +266,78 @@
             document.getElementById('address').readOnly=false;
         }
     </script>
+    <script type="text/javascript">
+        function OnSelectionChange (select) {
+            var selectedOption = select.options[select.selectedIndex];
+            if (selectedOption.value=="1"){
+                let div=document.getElementById('new');
+                div.className='row';
+                let constructs=@json($constructs);
+                let select=document.getElementById('construct');
+                console.log(select);
+                select.options[0]=new Option("","");
+                var i;
+                for(i=0;i<constructs.length;++i){
+                    // select.options[i].text = constructs[i].name;
+                    // select.options[i].value = constructs[i].id;
+                    select.options[i+1] = new Option(constructs[i].name, constructs[i].id);
+                    console.log(constructs[i].name);
+                }
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function OnSelectionChangeConstr (select) {
+            let div=document.getElementById('complex');
+            let selcom=document.getElementById('complexs');
+            let selconstruct = document.getElementById("construct");
+            let construct = selconstruct.options[selconstruct.selectedIndex].value;
+            div.className='form-group';
+            let complexs=@json($complexs);
+            let i;
+
+            for(i=0;i<complexs.length;++i){
+                if(complexs[i].construct_id==construct){
+                    selcom.options[i]=new Option(complexs[i].name,complexs[i].id);
+                }
+            }
+            let admin = complexs.find(item =>item.id == construct);
+            console.log(admin);
+        }
+    </script>
+    <script>
+        function showFile(e) {
+            var files = e.target.files;
+            for (var i = 0, f; f = files[i]; i++) {
+                if (!f.type.match('image.*')) continue;
+                var fr = new FileReader();
+                var div=document.getElementById('foto');
+                div.innerText = "";
+                fr.onload = (function(theFile) {
+                    return function(e) {
+                        var myImg = document.createElement("img");
+                        //myImg.className="fotorama__img";
+                        myImg.src =e.target.result;
+                        myImg.className="img-thumbnail col-md-3";
+                        var a = document.querySelector("#foto");
+                        if (a) a.appendChild(myImg);
+                        // $('.fotorama').fotorama();
+                        // $('.fotorama').fotorama({
+                        //     data: [
+                        //         {img:e.target.result}
+                        //     ]
+                        // });
+                        // console.log(e.target.files);
+
+                    };
+                })(f);
+                fr.readAsDataURL(f);
+            }
+
+        }
+        document.getElementById('files').addEventListener('change', showFile, false);
+    </script>
+
     {{--<script type="text/javascript">--}}
         {{--function OnSelectionChange (select) {--}}
             {{--var selectedOption = select.options[select.selectedIndex];--}}

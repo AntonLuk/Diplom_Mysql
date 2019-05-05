@@ -54,7 +54,7 @@
                     <li><a href=""><i class="fa fa-thumbs-o-up"></i>Сделки</a>
                         <ul class="submenu">
                             <li><a href="">Все сделки</a></li>
-                            <li><a href="">Новый объект</a></li>
+                            <li><a href="{{route('deals.addForm')}}">Новая сделка</a></li>
                         </ul>
                     @if(Entrust::hasRole('administrator'))
                     <li><a href=""><i class="fa fa-cog"></i>Настройки</a>

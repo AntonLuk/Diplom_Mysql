@@ -43,6 +43,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "jgallery": "^2.1.2",
+    "jqwidgets-framework": "^7.2.0",
     "vue-router": "^3.0.2",
     "vue-yandex-maps": "^0.8.3"
   }

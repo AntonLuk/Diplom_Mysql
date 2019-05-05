@@ -96,6 +96,11 @@
             @if(Entrust::hasRole('administrator'))
                 <td>{{$obj->application->user->name}}</td>
             @endif
+            <td>	<input type="button" class="btn btn-success"
+                           value="Создать сделку"
+                           onclick='
+                                   location.href = "{{route('deals.addFormWithObj',['id'=>$obj->id])}}";'>
+            </td>
             <td>	<input type="button" class="btn btn-info"
                            value="Показать"
                            onclick='
