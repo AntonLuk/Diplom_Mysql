@@ -77,10 +77,22 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/index','ContractsController@index')->name('contracts.index');
 
     });
+    Route::group(['prefix' => 'constructs'], function () {
+        Route::get('/index','ConstructsController@index')->name('constructs.index');
+        Route::get('/destroy/{id}','ConstructsController@destroy')->name('constructs.destroy');
+        Route::get('/addForm','ConstructsController@addform')->name('constructs.addForm');
+        Route::post('/create','ConstructsController@create')->name('constructs.create');
+        Route::post('/edit','ConstructsController@edit')->name('constructs.edit');
+        Route::get('/editForm/{id}','ConstructsController@editForm')->name('constructs.editForm');
+
+    });
     Route::group(['prefix' => 'entrust'], function () {
 //        Route::get('/addForm/{id}','DealsController@getAppFile')->name('deals.addform');
         Route::get('/index','EntrustController@index')->name('entrust.index');
+        Route::get('/show/{id}','EntrustController@show')->name('entrust.show');
+        Route::get('/index','EntrustController@index')->name('entrust.index');
         Route::post('/applyset','EntrustController@applyset')->name('entrust.applyset');
+        Route::post('/edit','EntrustController@edit')->name('entrust.edit');
 
     });
     Route::get('/home', 'HomeController@index')->name('home');

@@ -60,7 +60,12 @@
                     <li><a href=""><i class="fa fa-cog"></i>Настройки</a>
                         <ul class="submenu">
                             <li><a href="{{route('entrust.index')}}">Настройка прав доступа</a></li>
-                            <li><a href="">Новый объект</a></li>
+
+                        </ul>
+                        <a href=""><i class="fa fa-cog"></i>Застройщики</a>
+                        <ul class="submenu">
+                            <li><a href="{{route('constructs.index')}}">Все застройщики</a></li>
+                            <li><a href="{{route('constructs.addForm')}}">Новый застройщик</a></li>
                         </ul>
                         @endif
                 </ul>
