@@ -19,7 +19,7 @@ class CreateRewardsTable extends Migration
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->decimal('percent');
             $table->integer('complex_id')->unsigned();
-            $table->foreign('complex_id')->references('id')->on('complexs');
+            $table->foreign('complex_id')->references('id')->on('complexs')->onDelete('cascade');
             $table->timestamps();
         });
     }

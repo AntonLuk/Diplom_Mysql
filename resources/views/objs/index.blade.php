@@ -54,7 +54,7 @@
     @if(count($objs)==0)
         <div class="">
             <th class=""><h4>Нет объектов</h4></th>
-            <th><a href="{{route('objs.index')}}" class="btn btn-success">Все объекты</a> </th>
+            <th><a href="{{route('objs.addForm')}}" class="btn btn-success">Добавить объект</a> </th>
         </div>
 
     @else

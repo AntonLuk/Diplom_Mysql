@@ -55,7 +55,9 @@ class ObjsController extends Controller
 //            $objs=Obj::where('user_id',$user_id)->with('images')->get();
 //        }
         $objs=Obj::with('images')->paginate(10);
+        //$objs=Application::where('user_id',$user->id)->get();
         $searchForm=$this->SearchForm();
+        //return(dd($objs));
         return view('objs.index',compact('objs','searchForm'));
         //return(dd($searchForm['users']));
        //return(dd(Auth::user()->id));

@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Obj;
 class Application extends Model
 {
     public function user()
@@ -26,5 +26,8 @@ class Application extends Model
     }
     public function files(){
        return $this->hasMany(FilesApplication::class,'application_id');
+    }
+    public function objs(){
+        return $this->hasMany(Obj::class);
     }
 }

@@ -53,7 +53,7 @@
                         </ul>
                     <li><a href=""><i class="fa fa-thumbs-o-up"></i>Сделки</a>
                         <ul class="submenu">
-                            <li><a href="">Все сделки</a></li>
+                            <li><a href="{{route('deals.index')}}">Все сделки</a></li>
                             <li><a href="{{route('deals.addForm')}}">Новая сделка</a></li>
                         </ul>
                     @if(Entrust::hasRole('administrator'))
@@ -62,7 +62,8 @@
                             <li><a href="{{route('entrust.index')}}">Настройка прав доступа</a></li>
 
                         </ul>
-                        <a href=""><i class="fa fa-cog"></i>Застройщики</a>
+                        <li>
+                        <a href=""><i class="fa fa-house"></i>Застройщики</a>
                         <ul class="submenu">
                             <li><a href="{{route('constructs.index')}}">Все застройщики</a></li>
                             <li><a href="{{route('constructs.addForm')}}">Новый застройщик</a></li>

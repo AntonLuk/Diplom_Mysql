@@ -67,9 +67,12 @@ Route::group(['middleware' => ['auth']], function () {
     });
     Route::group(['prefix' => 'deals'], function () {
         Route::get('/addForm','DealsController@addForm')->name('deals.addForm');
+        Route::get('/index','DealsController@index')->name('deals.index');
         Route::get('/addFormWithApp/{id}','DealsController@addFormWithApp')->name('deals.addFormWithApp');
         Route::get('/addFormWithObj/{id}','DealsController@addFormWithObj')->name('deals.addFormWithObj');
         Route::get('/deleteAppFile/{Fileid}{AppID}','FilesController@deleteAppFile')->name('files.deleteAppFile');
+        Route::post('/createDeal','DealsController@createDeal')->name('deals.createDeal');
+
 
     });
     Route::group(['prefix' => 'contracts'], function () {
@@ -83,7 +86,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/addForm','ConstructsController@addform')->name('constructs.addForm');
         Route::post('/create','ConstructsController@create')->name('constructs.create');
         Route::post('/edit','ConstructsController@edit')->name('constructs.edit');
+        Route::post('/ComCreate','ConstructsController@ComCreate')->name('constructs.ComCreate');
+        Route::post('/ComEdit','ConstructsController@ComEdit')->name('constructs.ComEdit');
         Route::get('/editForm/{id}','ConstructsController@editForm')->name('constructs.editForm');
+        Route::get('/ComRewardsForm/{id}','ConstructsController@ComRewardsForm')->name('constructs.ComRewardsForm');
+        Route::get('/ComDestroy/{id}','ConstructsController@ComDestroy')->name('constructs.ComDestroy');
+        Route::get('/addComForm/{id}','ConstructsController@addComForm')->name('constructs.addComForm');
 
     });
     Route::group(['prefix' => 'entrust'], function () {

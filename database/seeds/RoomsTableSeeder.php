@@ -34,16 +34,16 @@ class RoomsTableSeeder extends Seeder
                     'id' => 4,
                     'name' => '3'
                 ),
-            5=>
-                array(
-                    'id' => 5,
-                    'name' => '4'
-                ),
-            6=>
-                array(
-                    'id' => 6,
-                    'name' => '5'
-                ),
+//            5=>
+//                array(
+//                    'id' => 5,
+//                    'name' => '4'
+//                ),
+//            6=>
+//                array(
+//                    'id' => 6,
+//                    'name' => '5'
+//                ),
 
 
         ));
