@@ -33,6 +33,7 @@
                 </tbody>
             </table>
         </div>
+{{$deals->links()}}
         {{--<input type="submit" class="btn btn-success" value="Применить">--}}
 
 @endsection

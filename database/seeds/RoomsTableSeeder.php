@@ -22,17 +22,17 @@ class RoomsTableSeeder extends Seeder
             1=>
                 array(
                     'id' => 2,
-                    'name' => '1'
+                    'name' => '1-комн.'
                 ),
             3=>
                 array(
                     'id' => 3,
-                    'name' => '2'
+                    'name' => '2-комн.'
                 ),
             4=>
                 array(
                     'id' => 4,
-                    'name' => '3'
+                    'name' => '3-комн.'
                 ),
 //            5=>
 //                array(

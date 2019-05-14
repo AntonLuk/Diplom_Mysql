@@ -106,6 +106,9 @@ class UsersController extends Controller
                 RoleUser::where('user_id', $request->id)
                     ->where('role_id', $role->id)
                     ->update(['role_id' => $request->role]);
+//                $user=RoleUser::where([['user_id',$request->id],['role_id',$role->id]])->first();
+//                $user->role_id=$request->role;
+//                $user->save();
             }
         }
 

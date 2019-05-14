@@ -33,7 +33,13 @@ class DealsController extends Controller
         return redirect(route('deals.index'));
     }
     public function index(){
-       $deals=Deal::all();
+        if(Auth::user()->hasRole('administrator')){
+            $deals=Deal::all()->paginate(10);
+        }else{
+            $deals = Deal::whereHas('application', function ($query) {
+                $query->where('user_id',Auth::user()->id);
+            })->paginate(10);
+        }
        return view('deals.index',compact('deals'));
     }
 }

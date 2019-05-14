@@ -48,13 +48,14 @@ class ObjsController extends Controller
     }
     public function index(){
         $user=Auth::user();
-//        if($user->hasRole('administrator')){
-//            $objs=Obj::with('images')->get();
-//        }else{
-//            $user_id=Auth::user()->id;
-//            $objs=Obj::where('user_id',$user_id)->with('images')->get();
-//        }
-        $objs=Obj::with('images')->paginate(10);
+        if($user->hasRole('administrator')){
+            $objs=Obj::with('images')->paginate(10);
+        }else{
+            $objs = Obj::whereHas('application', function ($query) {
+                $query->where('user_id',Auth::user()->id);
+            })->paginate(10);
+        }
+
         //$objs=Application::where('user_id',$user->id)->get();
         $searchForm=$this->SearchForm();
         //return(dd($objs));
