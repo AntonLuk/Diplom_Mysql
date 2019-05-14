@@ -7,7 +7,7 @@
     <div class="form-group">
         <label for="id_label_single">
             Выберите объект
-            <select class="js-example-basic-single js-states form-control objs" name="obj_id" onchange="reward()" id="id_label_single">
+            <select class="js-example-basic-single js-states form-control objs" name="obj_id" onchange="profit()" id="id_label_single">
                 <option></option>
                 @foreach($objs as $obj)
                     <option value="{{$obj->id}}">ID:{{$obj->id}},Комн:{{$obj->room->name}},Адрес:{{$obj->city}},{{$obj->district->name}},{{$obj->street}},{{$obj->house}}</option>
@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
         <label>Коммисия</label>
-        <input type="number" class="form-control" name="reward" min="0">
+        <input type="number" class="form-control" id="rew" name="reward" min="0">
     </div>
         <input type="submit" class="btn btn-success">
     </form>
@@ -38,6 +38,31 @@
 
     {{--</div>--}}
 
+    <script>
+        function profit() {
+            let complexs=@json($complexs);
+            let objs=@json($objs);
+            // let selobj=select.options[select.selectedIndex];
+            let selobj=document.getElementById('id_label_single').value;
+            for(let i=0;i<objs.length;i++){
+                console.log(objs[i],selobj);
+                if(selobj==objs[i].id){
+                    if(objs[i].type_of_obj_id==2){
+                        let rew=document.getElementById('rew');
+                        let price=objs[i].price;
+                        if(price<2000000){
+                            rew.value=50000;
+                        }
+                        else{
+                            rew.value=30000+price*0.02;
+                        }
+                        // alert('Новостройка');
+                    }
+                }
+            }
+
+        }
+    </script>
 
     <script>
 
@@ -48,21 +73,6 @@
         //     $(".applications").select2();
         // });
         // $(".applications").select2();
-    function reward() {
-        let complexs=@json($complexs);
-        let objs=@json($objs);
-        let selobj=document.getElementById('id_label_single')
-        for(let i=0;i<objs.length;i++){
-            console.log(objs[i],selobj);
-            if(selobj.value==objs[i].id){
-
-                if(objs[i].type_of_obj_id==1){
-                    alert('Новостройка');
-                }
-            }
-        }
-
-    }
-    </script>
+        </script>
 
 @endsection
