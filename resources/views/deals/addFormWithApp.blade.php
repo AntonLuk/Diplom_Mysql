@@ -26,8 +26,26 @@
         <label>Коммисия</label>
         <input type="number" class="form-control" id="rew" name="reward" min="0">
     </div>
+       <div class="form-group d-none" id="obj_form">
+           <div class="form-group">
+               <label>Адрес</label>
+               <input type="text" class="form-control" readonly id="address">
+           </div>
+           <div class="row">
+               <div class="col">
+                   <div class="form-group">
+                       <label>ФИО владельца</label>
+                       <input type="text" class="form-control" readonly id="client">
+                   </div>
+               </div>
+           </div>
+       </div>
         <input type="submit" class="btn btn-success">
     </form>
+    <script>
+        let objs=@json($objs);
+        console.log(objs[0].images);
+    </script>
     <script>
         function profit() {
             let complexs=@json($complexs);
@@ -39,6 +57,10 @@
                 if(selobj==objs[i].id){
                     if(objs[i].type_of_obj_id==2){
                         let rew=document.getElementById('rew');
+                        let address=document.getElementById('address');
+                        address.value=objs[i].address;
+                        let obj_form=document.getElementById('obj_form');
+                        obj_form.className='form-group';
                         let price=objs[i].price;
                         if(price<2000000){
                             rew.value=50000;
