@@ -28,16 +28,6 @@
     </div>
         <input type="submit" class="btn btn-success">
     </form>
-    {{--<div class="form-group">--}}
-    {{--<div class="row">--}}
-    {{--<div class="col">--}}
-
-    {{--</div>--}}
-    {{--</div>--}}
-
-
-    {{--</div>--}}
-
     <script>
         function profit() {
             let complexs=@json($complexs);
@@ -57,6 +47,9 @@
                             rew.value=30000+price*0.02;
                         }
                         // alert('Новостройка');
+                    }
+                    else{
+
                     }
                 }
             }

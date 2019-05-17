@@ -7,8 +7,8 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Объект</th>
-                    <th>Заявка</th>
+                    <th>Объект(ID)</th>
+                    <th>Заявка(ID)</th>
                     <th>Комиссия</th>
                 </tr>
                 </thead>

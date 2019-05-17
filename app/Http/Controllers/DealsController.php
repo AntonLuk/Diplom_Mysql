@@ -7,6 +7,7 @@ use App\Obj;
 use App\Application;
 use App\Complex;
 use App\Deal;
+use Illuminate\Support\Facades\Auth;
 
 class DealsController extends Controller
 {
@@ -19,8 +20,21 @@ class DealsController extends Controller
     }
     public function addFormWithApp($id){
         $complexs=Complex::with(['rewards','construct'])->get();
-        $objs=Obj::all();
+
+
         $application=Application::find($id);
+        if($application->type_client_id=2) {
+            if (count($application->objs) != 0) {
+                $objs = Obj::whereHas('application', function ($query) {
+                    $query->where('client_id', Auth::user()->id);
+                })->get();
+            }
+        }
+            if($application->type_client_id=1){
+            $objs=Obj::all();}
+
+
+
         return view('deals.addFormWithApp',compact('application','objs','complexs'));
     }
     public function createDeal(Request $request){
@@ -34,7 +48,7 @@ class DealsController extends Controller
     }
     public function index(){
         if(Auth::user()->hasRole('administrator')){
-            $deals=Deal::all()->paginate(10);
+            $deals=Deal::paginate(10);
         }else{
             $deals = Deal::whereHas('application', function ($query) {
                 $query->where('user_id',Auth::user()->id);
