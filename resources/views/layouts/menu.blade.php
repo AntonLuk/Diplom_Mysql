@@ -68,6 +68,14 @@
                             <li><a href="{{route('constructs.index')}}">Все застройщики</a></li>
                             <li><a href="{{route('constructs.addForm')}}">Новый застройщик</a></li>
                         </ul>
+                        </li>
+                        <li>
+                            <a href=""><i class="fa fa-house"></i>Отчеты</a>
+                            <ul class="submenu">
+                                <li><a href="{{route('report.dealsUsersForm')}}">По сделкам</a></li>
+                                {{--<li><a href="{{route('constructs.addForm')}}">Новый застройщик</a></li>--}}
+                            </ul>
+
                         @endif
                 </ul>
 

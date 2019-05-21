@@ -13,4 +13,7 @@ class Deal extends Model
     public function application(){
         return $this->belongsTo(Application::class);
     }
+    public function users(){
+        return $this->hasManyThrough(User::class,Application::class);
+    }
 }

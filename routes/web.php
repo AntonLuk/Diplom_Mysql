@@ -103,6 +103,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/edit','EntrustController@edit')->name('entrust.edit');
 
     });
+    Route::group(['prefix' => 'reports'], function () {
+        Route::get('/dealsUsersForm','ReportsController@dealsUsersForm')->name('report.dealsUsersForm');
+        Route::post('/dealsUsers','ReportsController@dealsUsers')->name('report.dealsUsers');
+
+
+    });
     Route::get('/home', 'HomeController@index')->name('home');
 
 });

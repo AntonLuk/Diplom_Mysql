@@ -30,4 +30,7 @@ class Application extends Model
     public function objs(){
         return $this->hasMany(Obj::class);
     }
+    public function deals(){
+        return $this->hasMany(Deal::class);
+    }
 }

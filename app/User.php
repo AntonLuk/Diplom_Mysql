@@ -44,5 +44,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Client::class);
     }
+    public function deals()
+    {
+        return $this->hasManyThrough(Deal::class,Application::class);
+    }
 
 }

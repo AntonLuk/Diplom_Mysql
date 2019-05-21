@@ -8,6 +8,7 @@ use App\Application;
 use App\Complex;
 use App\Deal;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class DealsController extends Controller
 {
@@ -47,6 +48,7 @@ class DealsController extends Controller
         return redirect(route('deals.index'));
     }
     public function index(){
+
         if(Auth::user()->hasRole('administrator')){
             $deals=Deal::paginate(10);
         }else{
