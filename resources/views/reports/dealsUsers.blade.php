@@ -2,10 +2,11 @@
 
     @extends('layouts.master')
 @section('content')
-    <form method="post" action="{{route('report.dealsUsers')}}">
-        @csrf
+<div class="container">
         <div class="form-group">
-            <label>Отчет по сотрудникам за период</label>
+            <h2>Отчет по сотрудникам за период</h2>
+            <form method="post" action="{{route('report.dealsUsers')}}">
+                @csrf
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -16,15 +17,25 @@
                 <div class="col">
                     <label>Конец</label>
                     <input type="date" name="end" class="form-control">
-
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-success" value="Печать">
-                    </div>
-
                 </div>
             </div>
+                <input type="submit" class="btn btn-success" value="Печать">
+            </form>
         </div>
-    </form>
+    <hr>
+      <div class="form-group">
+            <h2>Отчет по динамике продаж</h2>
+            <form method="post" action="{{route('report.dinamic')}}">
+                @csrf
+                <div class="row">
+                    <div class="col">
+                           <label>За последние кол-во месяцев</label>
+                            <input type="number" class="form-control"placeholder="Введите кол-во месяцев" name="per">
+
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-success" value="Печать">
+            </form>
+        </div>
+</div>
 @endsection

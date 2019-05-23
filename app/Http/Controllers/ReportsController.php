@@ -11,15 +11,6 @@ use Carbon\Carbon;
 class ReportsController extends Controller
 {
     public function dealsUsers(Request $request){
-        //$users=User::with('deals')->where('created_at','like','2019-05-12')->get();
-
-//        $user = User::find(Auth::user()->id);
-//        $user->load(['deals' => function ($q) {
-//            $q->where('profit',20000);
-//        }]);
-
-
-
        $userName=Auth::user()->name;
         $date=Carbon::now();
             $start = $request->start;
@@ -27,10 +18,6 @@ class ReportsController extends Controller
             $users = User::with(['deals' => function ($query) use ($start,$end) {
                     $query->whereBetween('deals.created_at',[$start,$end]);
             }])->get();
-
-//                $users = User::whereHas('deals', function ($query) use ($start,$end) {
-//            $query->whereBetween('created_at',[$start,$end]);
-//        })->get();
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $tpl = $phpWord->loadTemplate(public_path('usersDeals.docx'));
         $tpl->setValue('user',$userName);
@@ -63,11 +50,13 @@ class ReportsController extends Controller
         $tpl->setValue('userProf#'.$i, $total_prof);
         $tpl->saveAs(public_path('users.docx'));
         return response()->download(public_path('users.docx'));
-
-        // $deals=User::find($user)->with('applicationsHas')->count();
-        return view ('reports.dealsUsers',compact('users'));
     }
     public function dealsUsersForm(){
         return view('reports.dealsUsers');
+    }
+    public function dinamic(Request $request){
+        $start=Carbon::now()->subMonths($request->per);
+        $end=Carbon::now();
+        return dd($start,$end);
     }
 }
