@@ -111,8 +111,6 @@ class ReportsController extends Controller
                 $start=$start->addMonth(1);
             }
         }
-       // return(dd($data));
-
         $start = $request->start;
         $end = $request->end;
         $users = User::with(['deals' => function ($query) use ($start,$end) {

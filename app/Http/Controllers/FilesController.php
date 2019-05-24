@@ -19,6 +19,8 @@ class FilesController extends Controller
         unlink(public_path(Storage::url('applications/'.$AppId.'/'.$file->file_path)));
         $file->delete();
         return(redirect(route('applications.show',['id'=>$AppId])));
+     }
+     public function getContract($id){
 
      }
 }

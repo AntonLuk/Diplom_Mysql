@@ -36,7 +36,7 @@
         @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
 <body>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">5-100</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">HOUSE</a>
     <input class="form-control form-control-dark w-100" id="address1" name="address" type="text" placeholder="Поиск объектов" aria-label="Поиск">
 
     <ul class="navbar-nav px-3">

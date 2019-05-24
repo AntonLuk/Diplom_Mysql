@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+    <h2>Застройщики</h2>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>

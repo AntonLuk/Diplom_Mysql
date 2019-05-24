@@ -103,9 +103,12 @@ class UsersController extends Controller
         foreach ($user->roles as $role) {
 
             if ($role != $request->role) {
-                RoleUser::where('user_id', $request->id)
-                    ->where('role_id', $role->id)
-                    ->update(['role_id' => $request->role]);
+//                RoleUser::where('user_id', $request->id)
+//                    ->where('role_id', $role->id)
+//                    ->update(['role_id' => $request->role]);
+                $roleuser=RoleUser::where([['user_id', $request->id],['role_id', $role->id]])->first();
+                $roleuser->role_id=$request->role;
+                $roleuser->save();
 //                $user=RoleUser::where([['user_id',$request->id],['role_id',$role->id]])->first();
 //                $user->role_id=$request->role;
 //                $user->save();

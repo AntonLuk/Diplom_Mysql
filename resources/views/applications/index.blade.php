@@ -11,6 +11,7 @@
                 <th>Тип клиента</th>
                 <th>Этап</th>
                 <th>Сотрудник</th>
+                <th>Дата создания</th>
 
             </tr>
             </thead>
@@ -23,6 +24,7 @@
                     <td>{{$application->type_client->name}}</td>
                     <td>{{$application->stage->name}}</td>
                     <td>{{$application->user->name}}</td>
+                    <td>{{$application->client->created_at}}</td>
                     <td>	<input type="button" class="btn btn-success"
                                    value="Создать сделку"
                                    onclick='location.href = "{{route('deals.addFormWithApp',['id'=>$application->id])}}";'>

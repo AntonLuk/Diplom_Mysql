@@ -70,9 +70,9 @@
                         </ul>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-house"></i>Отчеты</a>
+                            <a href="{{route('report.dealsUsersForm')}}"><i class="fa fa-house"></i>Отчеты</a>
                             <ul class="submenu">
-                                <li><a href="{{route('report.dealsUsersForm')}}">По сделкам</a></li>
+{{--                                <li><a href="{{route('report.dealsUsersForm')}}">По сделкам</a></li>--}}
                                 {{--<li><a href="{{route('constructs.addForm')}}">Новый застройщик</a></li>--}}
                             </ul>
 
