@@ -120,21 +120,13 @@ class ReportsController extends Controller
         $i = 0;
         $total_count=0;
         $total_prof=0;
-        $tpl->cloneRow('month', count($data)*5 + 2);
-
+        $tpl->cloneRow('month', count($data) * 5 + 2);
         foreach($data as $dat)
         {
-
-           // $userprof=0;
             $i++;
-           // $tpl->setValue('num#'.$i, $i);
             $tpl->setValue('month#'.$i, $dat['m']);
-            //$count=count($user->deals);
             $tpl->setValue('room#'.$i, '');
-
             $tpl->setValue('count#'.$i, $dat['prof']);
-          //  $tpl->cloneRow('room#'.$i, count($rooms));
-            //$tpl->addRow();
             foreach ($rooms as $room){
                 foreach($dat as $key => $value){
                    if($key==$room->name){
@@ -146,12 +138,7 @@ class ReportsController extends Controller
                 }
 
             }
-//            foreach ($rooms as $room){
-//                $userprof+=$deal->profit;
-//            }
-            //$tpl->setValue('count#'.$i, $dat['profit']);
             $total_prof+=$dat['prof'];
-           // $total_count += $count;
         }
         $i++;
         $tpl->setValue('month#'.$i,"");
@@ -163,10 +150,5 @@ class ReportsController extends Controller
         $tpl->setValue('count#'.$i, $total_prof);
         $tpl->saveAs(public_path('dinamic1.docx'));
         return response()->download(public_path('dinamic1.docx'));
-        //return dd($data[5]['prof']);
-
-
-
-
-    }
+        }
 }
