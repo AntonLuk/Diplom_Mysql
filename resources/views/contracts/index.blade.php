@@ -28,7 +28,7 @@
                             {{--<td>{{$client->email}}</td>--}}
                             {{--<td>{{$client->user->name}}</td>--}}
                             <td>{{$contract->created_at}}</td>
-
+                            <td><a class="btn btn-info">Скачать</a></td>
                             {{--@foreach($user->departments as $department)--}}
                             {{--<td>{{$department->display_name}}</td>--}}
                             {{--@endforeach--}}
