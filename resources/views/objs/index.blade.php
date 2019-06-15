@@ -11,7 +11,7 @@
         <input type="hidden" name="house" class="form-control" readonly id="md-house">
         <b class="spoiler-title form-control btn btn-secondary">Поиск</b>
         <div class="container-fluid bg-light spoiler-body">
-            <div class="row ">
+            <div class="row">
                 <div class="col-md-4 pt-3">
                     <div class="form-group ">
                         <label>Адрес</label>
@@ -30,6 +30,28 @@
                         </select>
                     </div>
                 </div>
+                <div class="col-md-2 pt-3">
+                    <div class="form-group">
+                        <label>Район</label>
+                        <select id="inputState" name="district" class="form-control">
+                            <option value=""></option>
+                            @foreach($searchForm['districts'] as $district)
+                                <option value="{{$district->id}}">{{$district->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2 pt-3">
+                    <div class="form-group">
+                        <label>Ремонт</label>
+                        <select id="inputState" name="repair_id" class="form-control">
+                            <option value=""></option>
+                        @foreach($searchForm['type_repairs'] as $rep)
+                            <option value="{{$rep->id}}">{{$rep->name}}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-3 pt-3">
@@ -38,10 +60,28 @@
                         <input type="number" min="1" class="form-control">
                     </div>
                 </div>
-            </div>
-            <div class="row ">
-                <div class="col-md-2"><button type="submit" class="btn btn-primary btn-block">Search</button></div>
 
+                <div class="col-md-6 pt-3">
+                    <div class="row">
+                        <label>Год постройки</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <input type="number" min="1" name="year" class="form-control">
+                            </div>
+                        </div>
+                       <div class="col-md-2">
+                           <div class="form-group">
+                               <input type="number" min="1" name="year" class="form-control">
+                           </div>
+                       </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><button type="submit" class="btn btn-primary btn-block">Поиск</button></div>
             </div>
         </div>
     </form>
@@ -63,9 +103,11 @@
             <th> Фото</th>
             <th>Адрес</th>
             <th>Этаж/Этажность</th>
+            <th>Стоимость</th>
             @if(Entrust::hasRole('administrator'))
                 <th>Сотрудник</th>
                 @endif
+
             <th></th>
         </tr>
     @endif
@@ -93,6 +135,7 @@
             {{--<td>{{asset('storage/images/objs/'.$obj->id)}}</td>--}}
             <td>г.{{$obj->city}},ул.{{$obj->street}}, {{$obj->house}}</td>
             <td>{{$obj->floor}}/{{$obj->floors}}</td>
+            <td>{{$obj->price}}</td>
             @if(Entrust::hasRole('administrator'))
                 <td>{{$obj->application->user->name}}</td>
             @endif
