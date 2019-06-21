@@ -6,6 +6,7 @@ use App\Application;
 use App\Client;
 use App\Contract;
 
+use App\FilesApplication;
 use Illuminate\Foundation\Console\Presets\React;
 use Illuminate\Http\Request;
 use App\TypeClient;
@@ -13,6 +14,7 @@ use App\User;
 use App\Comment;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Zizaco\Entrust;
 use App\Stage;
 class ClientsController extends Controller
@@ -69,6 +71,18 @@ class ClientsController extends Controller
             $application->type_client_id=$request->type_client_id;
             $application->client_id=$client->id;
             $application->save();
+        if($request->hasFile('files')){
+            $files=$request->file('files');
+            $destinationPath=public_path().Storage::url('/applications/').$application->id.'/';
+            foreach ($files as $file){
+                $image=new FilesApplication();
+                $filename=($application->id).'_'.$file->getClientOriginalName();
+                $file->move($destinationPath,$filename);
+                $image->file_path=$filename;
+                $image->application_id=$application->id;
+                $image->save();
+            }
+        }
             $contract=new Contract();
             $contract->number=round(microtime(true) * 1000);
             $contract->client_id=$client->id;

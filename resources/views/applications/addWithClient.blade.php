@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <label>файлы</label>
+                <label>Прикрепить файлы</label>
                 <input type="file" class="form-control" multiple name="files[]">
             </div>
         </div>

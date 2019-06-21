@@ -28,6 +28,12 @@
                 @endforeach
             </select>
         </div>
+        <div class="container">
+            <div class="form-group">
+                <label>Прикрепить доп.файлы </label>
+                <input type="file" name="files[]" multiple class="form-control">
+            </div>
+        </div>
         <div class="form-group">
             <label for="comments">Описание(Потребности)</label>
             <textarea style="width: 100%;

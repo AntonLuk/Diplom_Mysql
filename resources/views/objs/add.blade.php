@@ -316,7 +316,7 @@
                 document.getElementById('md-street').value = suggestion.data.street;
                 //document.getElementById('md-house').value = suggestion.data.house+suggestion.data.block_type+suggestion.data.block;
                 document.getElementById('md-flat').value = suggestion.data.flat;
-                document.getElementById('md-city').value = suggestion.data.street;
+                document.getElementById('md-city').value = suggestion.data.city;
                 //document.getElementById('md-district').value = suggestion.data.city_district;
                 //   myMap.center([suggestion.data.geo_lat,suggestion.data.geo_lon]);
                 // document.getElementById('md-area').value = suggestion.data.flat_area;
